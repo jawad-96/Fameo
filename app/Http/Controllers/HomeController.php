@@ -51,24 +51,31 @@ class HomeController extends Controller
         $topCategories = Categories::withCount('category_products') // Count the related category products
             ->orderBy('category_products_count', 'desc') // Order by the count of category products
             ->limit(6)
+            ->get();   
+            $trendingItems = CategoryProduct::join('products', 'category_products.product_id', '=', 'products.id')
+            ->leftJoin('product_views', 'category_products.product_id', '=', 'product_views.product_id')
+            ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id')
+            ->select(
+                'products.name as product_name',
+                'products.price as product_price',
+                'product_images.name as product_image',
+                DB::raw('COUNT(product_views.id) as total_views')
+            )
+            ->groupBy(
+                'products.name',
+                'products.price',
+                'product_images.name'
+            )
+            ->orderBy('total_views', 'desc') // Order by most views
+            ->limit(5) // Limit the result to the top 5 trending items
             ->get();
-        $trendingItems = CategoryProduct::join('products', 'category_products.product_id', '=', 'products.id')
-        ->join('product_views', 'category_products.product_id', '=', 'product_views.product_id')
-        ->join('product_images', 'products.id', '=', 'product_images.product_id') // Join with product_images table
-        ->select(
-            'category_products.*',
-            'products.name as product_name',
-            'products.price as product_price', // Get the price of the product
-            'product_images.name as product_image', // Get the product image
-            DB::raw('COUNT(product_views.id) as total_views')
-        )
-        ->groupBy('category_products.id', 'products.name', 'products.price', 'product_images.name') // Include product image in group by
-        ->orderBy('total_views', 'desc') // Order by most views
-        ->limit(5) // Limit the result to the top 10 trending items
-        ->get();
-        $featuredItems = Product::inRandomOrder()
-            ->select('products.*', 'product_images.name as product_image') // Assuming `image_path` is the column for the image
-            ->join('product_images', 'products.id', '=', 'product_images.product_id')
+
+            // dd( $trendingItems); 
+        
+        
+            $featuredItems = Product::inRandomOrder()
+            ->select('products.*', 'product_images.name as product_image') // Select the product image
+            ->leftJoin('product_images', 'products.id', '=', 'product_images.product_id') // Use leftJoin for product images
             ->with([
                 'category_products.category',
                 'store_products',
@@ -78,6 +85,7 @@ class HomeController extends Controller
             ->orderBy('products.id', 'desc')
             ->limit(3)
             ->get();
+        
 
             //$popularItemsWithTabs = $this->getPopularItemsWithTabs();
         //  dd($topCategories);
