@@ -1,0 +1,30 @@
+.form-login .form-box input[type="email"], input[type="password"], .form-register .form-box input[type="email"], input[type="password"]{height: 40px;line-height: 40px;font-size: 13px;}
+.flat-iconbox.style1{padding: 50px 0!important;}
+.reset-password{margin-bottom: 50px!important;}
+.form-reset{height: 350px!important;}
+.help-block{color:#a94442;}
+.has-danger .form-control {border: 1px solid #d9534f!important;}
+input[type="email"], input[type="password"] {margin-bottom: 0px!important;border: 1px solid;}
+.disableSection {pointer-events: none;opacity: 0.4;}
+.save-to-proceed{background-color: #f92400;color: #fff;font-size: 16px;height: 50px;line-height: 50px;padding: 0 64px;border-radius: 25px;margin-right: 30px;font-weight: 600;margin-left: -8px;letter-spacing: 0.5px;}
+
+ul.pagination{float: right;}
+ul.pagination li a,ul.pagination li span{height: 40px;line-height: 20px;width: 40px;text-align: center;border: 2px solid #e5e5e5;border-radius: 50%;margin: 0 2px;color: #484848;}
+.page-item:first-child .page-link, .page-item:last-child .page-link{border-radius: 50%;}
+.page-item.active .page-link{background-color: #f28b00;border-color: #f28b00;}
+.product-box .imagebox{border: 2px solid #e5e5e5;border-radius: 8px;min-height: 370px;}
+#mega-menu > ul.menu > li .drop-menu > .one-third ul li{margin-left: 20px;}
+.imagebox.style4 .box-content .product-name{min-height: 30px;}
+.imagebox.style4.v1, .imagebox.style4.v1:hover{min-height: 270px;border: 2px solid #e5e5e5;border-radius: 8px;}
+.imagebox.style4.v1 .box-image{height: 100% !important;}
+.imagebox .box-content .cat-name a:before, .imagebox .box-content .cat-name a:after{width: 50px;}
+.imagebox .box-content .cat-name a{margin-top: 15px;}
+.contact-email{border: 2px solid #e5e5e5!important;}
+#mainnav > ul.menu{word-spacing: 0;}
+/*for products filter pagination*/
+.hide{display: none;}
+.show{display: block;}
+.flex{display: flex;}
+.showImp{display: block!important;}
+.hideImp{display: none!important;}
+ul.flat-unstyled > li > ul{width: 150px !important;}
